@@ -20,6 +20,6 @@ Rails.application.routes.draw do
     resources :tweets, module: :users, only: [:index]
   end
 
-  resources :tweets, only: [:index, :show, :create, :update, :destroy]
+  resources :tweets, only: [:index, :show, :create, :destroy]
 end
 
