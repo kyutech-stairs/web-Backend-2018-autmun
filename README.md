@@ -37,32 +37,77 @@
     - `--api`はAPIモードでrailsアプリケーションを立ち上げるという意味, viewを作成しないようになる
 
 ### 2. モデルの作成
-#### 2.1
+#### 2.1 モデル設計（スキーマ設計）
     今回のモデルはUserとTweetの二つ
     ```
     - User
-        - name     : string
+        - name     : string(not null)
         - bio      : string
-        - location :string
+        - location : string
         - website  : string
     
     - Tweet
-        - text     : string
-        - user_id  : integer
+        - text     : string(not null)
+        - user_id  : integer(foreign key)
     ```
     のような構造を持つものとする
     User : Tweet に関して1対nの関係がある   
 
-#### 2.2
+#### 2.2 実装
     作成したディレクトリにて   
-    `bundle exec rails g model Users name:string bio:string location:string website:string`    
-    `bundle exec rails g model Tweets text:string user_id:integer`   
+    `bundle exec rails g model User name:string bio:string location:string website:string`    
+    `bundle exec rails g model Tweet text:string user_id:integer`   
     を実行  
-
+    モデルはできるが, 制約等が付いてないのでmigrationにて追加設定
+    `bundle exec rails g migration AddNotNullConstraintToNameOfUser`  
+    を実行しマイグレーションファイルを作成
+    nameにnotnull制約を追加するコードを記述  
+      
+    `bundle exec rails g migration AddConstraintsToTweetAttributes`
+    を実行しマイグレーションファイルを作成    
+    textにnotnull, user_idをforignkeyに設定   
+       
+    `bundle exec rails db:migrate`を実行   
+       
+    モデル作成完了
 
 ### 3. ルーティングの作成
+#### 3.1 ルーティング設計
+    RESTfulなルーティングを作成する   
+    REST再訪   
+        - REST
+            - プログラム呼び出し規約
+            - URL/URIで全てのリソースを一意に識別
+            - ステートレス(セッション管理や状態管理を行わない)
+            - 同じURLに対する呼び出し結果は常に同じことが期待される
+            - リソースのHTTPメソッド(GET, POST等)によって指定
+            - 結果はHTML, XML, JSON等で返される
+            - 処理結果はHTTPステータスコードで通知する
+    
+    これを元にルーティング(エンドポイント)を作成していく
+    どのようなエンドポイントがほしいかを考える（Twitterを触ってみる）
+    - User
+        - 作成, 読出, 更新, 削除
+    - Tweet
+        - 作成, 読出(Userに紐づいたもの[User押下後], 紐付きを考慮しないもの[TLに表示されるTweet]), 削除
+
+    ここで考えたエンドポイントをRESTfulに作成する   
+    HTTPメソッド   
+        - 作成:POST
+        - 読出:GET
+        - 更新:PUT
+        - 削除: DELETE 
+
+
+#### 3.2 実装
+
 
 ### 4. コントローラの作成
+#### 4.1 コントローラ設計
+
+
+#### 4.2 実装
+
 
 ## キーワード
     - Ruby
