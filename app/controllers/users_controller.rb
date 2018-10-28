@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   def create
     # 面倒
     # user = User.new(name: params[:name], bio: params[:bio], localtion: params[:localtion], website: params[:website])
-    user = User.new(params[:user])    
+    user = User.new(user_params)    
     if user.save then
       render json: {status: 201, data: user}
     else 
