@@ -5,8 +5,7 @@
 
 ## 準備
 - PostManをインストール(https://www.getpostman.com/)
-- Ruby 2.4をインストール(Macでrbenvの人は`rbenv install 2.4.1`, windowsの人は[RubyInstaller for Windows](https://rubyinstaller.org/downloads/)をから)
-- Ruby 2.4をインストール(Macでrbenvの人は`rbenv install 2.4.1`, windowsno)
+- Ruby 2.4をインストール(Macでrbenvの人は`rbenv install 2.4.1`, windowsの人は[RubyInstaller for Windows](https://rubyinstaller.org/downloads/)から)
 - ruby gemの bundler をインストール
 - 何かしらのエディタ(vim, atom, vscode等)がインストール
 ## 資料
@@ -27,7 +26,8 @@
 ### 1. railsアプリケーションの作成
 #### 1.1 railsのインストール
 好きなディレクトリにて`mkdir /* 好きなディレクトリ名 */`でディレクトリを作成 (講師は`mkdir stairs-backend-sample`とする, この名前がプロジェクト名となる)  
-作ったディレクトリに入って`rbenv local 2.4.1`でrubyをディレクトリに適用
+作ったディレクトリに入って`rbenv local 2.4.1`でrubyをディレクトリに適用   
+ruby2.4.1にbundlerが入っていなければ`gem install bundler`を実行  
 作ったディレクトリに入り, `bundle init`を実行, `Gemfile`が作成される   
 Gemfileに`gem 'rails', '~> 5.2.1'`を記入   
 `bundle install --path vendor/bundle`を実行   
@@ -113,6 +113,232 @@ HTTPメソッド
 
 
 #### 4.2 実装
+
+### 5. エンドポイント
+
+##### 5.1 GET `/users/:user_id/tweets`
+ユーザに紐づくツイートを取得します   
+レスポンス例:
+```json
+{
+    "status": 200,
+    "data": [
+        {
+            "id": 1,
+            "text": "janken",
+            "user_id": 1,
+            "created_at": "2018-10-29T13:15:34.710Z",
+            "updated_at": "2018-10-29T13:15:34.710Z"
+        },
+        {
+            "id": 2,
+            "text": "test1",
+            "user_id": 1,
+            "created_at": "2018-10-29T13:15:46.278Z",
+            "updated_at": "2018-10-29T13:15:46.278Z"
+        },
+        {
+            "id": 3,
+            "text": "test2",
+            "user_id": 1,
+            "created_at": "2018-10-29T13:16:03.800Z",
+            "updated_at": "2018-10-29T13:16:03.800Z"
+        }
+    ]
+}
+```
+
+##### 5.2 GET `/users`
+全ユーザを取得します　　　
+レスポンス例:  
+```json
+{
+    "status": 200,
+    "data": [
+        {
+            "id": 1,
+            "name": "momotarou",
+            "bio": "I am peach taro",
+            "location": "peach",
+            "website": "onigashima.com",
+            "created_at": "2018-10-28T00:47:16.270Z",
+            "updated_at": "2018-10-28T00:47:16.270Z"
+        },
+        {
+            "id": 2,
+            "name": "gold taro",
+            "bio": "kuma is best friend forever",
+            "location": "forest",
+            "website": "nihonmukashibanashi.com",
+            "created_at": "2018-10-28T02:31:01.168Z",
+            "updated_at": "2018-10-28T02:31:01.168Z"
+        },
+        {
+            "id": 3,
+            "name": "saru",
+            "bio": null,
+            "location": null,
+            "website": null,
+            "created_at": "2018-10-28T02:31:37.762Z",
+            "updated_at": "2018-10-28T02:31:37.762Z"
+        }
+    ]
+}
+```
+##### 5.3 GET `/users/:id`
+idで指定したユーザを取得します   
+レスポンス例:  
+```json
+{
+    "status": 200,
+    "data": {
+        "id": 1,
+        "name": "momotarou",
+        "bio": "I am peach taro",
+        "location": "peach",
+        "website": "onigashima.com",
+        "created_at": "2018-10-28T00:47:16.270Z",
+        "updated_at": "2018-10-28T00:47:16.270Z"
+    }
+}
+```
+
+##### 5.4 POST `/users`
+ユーザを新規作成します
+リクエスト例:  
+```json
+{
+	"user": {
+		"name": "urashimataro",
+		"bio": "竜宮城マジ卍",
+		"location": "竜宮城",
+		"website": "ryugujo.com"
+	}
+}
+```
+レスポンス例:  
+```json
+{
+    "status": 201,
+    "data": {
+        "id": 4,
+        "name": "urashimataro",
+        "bio": "竜宮城マジ卍",
+        "location": "竜宮城",
+        "website": "ryugujo.com",
+        "created_at": "2018-10-29T15:00:31.084Z",
+        "updated_at": "2018-10-29T15:00:31.084Z"
+    }
+}
+```
+
+##### 5.5 PUT `/users/:id`
+ idで指定したユーザの情報を更新します
+ リクエスト例:   
+ ```json
+ {
+	"user": {
+		"name": "yamada",
+		"bio": "デブです",
+		"location": "豚小屋",
+		"website": "yamachannodebu.com"
+	}
+}
+ ```
+ 
+ レスポンス例:  
+ ```json
+ {
+    "status": 200,
+    "data": {
+        "id": 2,
+        "name": "yamada",
+        "bio": "デブです",
+        "location": "豚小屋",
+        "website": "yamachannodebu.com",
+        "created_at": "2018-10-28T02:31:01.168Z",
+        "updated_at": "2018-10-29T15:04:10.166Z"
+    }
+}
+```
+##### 5.6 DELETE `/users/:id`
+idで指定したユーザを削除します   
+レスポンス例:  
+```json
+{
+    "status": 200,
+    "message": "success"
+}
+```
+
+
+##### 5.7 GET `/tweets`
+全ツイートを取得します   
+レスポンス例:  
+```json
+{
+    "status": 200,
+    "data": [
+        {
+            "id": 1,
+            "text": "janken",
+            "user_id": 1,
+            "created_at": "2018-10-29T13:15:34.710Z",
+            "updated_at": "2018-10-29T13:15:34.710Z"
+        },
+        {
+            "id": 2,
+            "text": "test1",
+            "user_id": 1,
+            "created_at": "2018-10-29T13:15:46.278Z",
+            "updated_at": "2018-10-29T13:15:46.278Z"
+        },
+        {
+            "id": 3,
+            "text": "test2",
+            "user_id": 1,
+            "created_at": "2018-10-29T13:16:03.800Z",
+            "updated_at": "2018-10-29T13:16:03.800Z"
+        }
+    ]
+}
+```
+
+
+##### POST `/tweets`
+ツイートを新規作成します
+リクエスト例:  
+```json
+{
+	"tweet": {
+		"text": "痩せたい",
+		"user_id": 2
+	}
+}
+```
+レスポンス例:  
+```json
+{
+    "status": 201,
+    "data": {
+        "id": 4,
+        "text": "痩せたい",
+        "user_id": 2,
+        "created_at": "2018-10-29T15:11:22.042Z",
+        "updated_at": "2018-10-29T15:11:22.042Z"
+    }
+}
+```
+
+##### DELETE `/tweets/:id`
+idで指定したツイートを削除します   
+レスポンス例:  
+```json
+{
+    "status": 200,
+    "message": "OK"
+}
+```
 
 
 ## キーワード
