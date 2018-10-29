@@ -1,13 +1,13 @@
 # Stairs web バックエンド勉強会 README
-### 日程
+## 日程
 - 2018/11/30
 - 2018/11/31
 
-### 前提
+## 前提
 - Ruby 2.4をインストールしている
 - ruby gemの bundler をインストールしている
 - 何かしらのエディタ(vim, atom, vscode等)がインストールされている
-### 資料
+## 資料
 今回作成するのは劣化版Twitter   
 ユーザがいてツイートのみできるというものを作る   
 基本的なCRUDとRESTを学ぶのが今回の軸    
@@ -122,40 +122,3 @@ HTTPメソッド
 - SQL
 - RDBMS
 - MVC
-
-
-
-
-
-
-
-
-
-
-
-
-
-# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
