@@ -39,7 +39,7 @@ railsをインストールしたディレクトリにて`bundle exec rails new .
 ### 2. モデルの作成
 #### 2.1 モデル設計（スキーマ設計）
 今回のモデルはUserとTweetの二つ
-```haskell
+```scala
 - User
     - name     : string(not null)
     - bio      : string
