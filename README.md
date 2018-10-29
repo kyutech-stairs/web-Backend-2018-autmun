@@ -24,7 +24,8 @@
 
 ### 1. railsアプリケーションの作成
 #### 1.1 railsのインストール
-好きなディレクトリにて`mkdir /* 好きなディレクトリ名 */`でディレクトリを作成 (講師は`mkdir stairs-backend-sample`とする, この名前がプロジェクト名となる)   
+好きなディレクトリにて`mkdir /* 好きなディレクトリ名 */`でディレクトリを作成 (講師は`mkdir stairs-backend-sample`とする, この名前がプロジェクト名となる)  
+作ったディレクトリに入って`rbenv local 2.4.1`でrubyをディレクトリに適用
 作ったディレクトリに入り, `bundle init`を実行, `Gemfile`が作成される   
 Gemfileに`gem 'rails', '~> 5.2.1'`を記入   
 `bundle install --path vendor/bundle`を実行   
