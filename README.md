@@ -1,7 +1,7 @@
 # Stairs web バックエンド勉強会 README
 ### 日程
-- 
--
+- 2018/11/30
+- 2018/11/31
 
 ### 前提
 - Ruby 2.4をインストールしている
@@ -39,7 +39,7 @@ railsをインストールしたディレクトリにて`bundle exec rails new .
 ### 2. モデルの作成
 #### 2.1 モデル設計（スキーマ設計）
 今回のモデルはUserとTweetの二つ
-```swift
+```haskell
 - User
     - name     : string(not null)
     - bio      : string
@@ -75,14 +75,14 @@ textにnotnull, user_idをforeignkeyに設定
 #### 3.1 ルーティング設計
 RESTfulなルーティングを作成する   
 REST再訪   
-    - REST
-        - プログラム呼び出し規約
-        - URL/URIで全てのリソースを一意に識別
-        - ステートレス(セッション管理や状態管理を行わない)
-        - 同じURLに対する呼び出し結果は常に同じことが期待される
-        - リソースのHTTPメソッド(GET, POST等)によって指定
-        - 結果はHTML, XML, JSON等で返される
-        - 処理結果はHTTPステータスコードで通知する
+- REST
+    - プログラム呼び出し規約
+    - URL/URIで全てのリソースを一意に識別
+    - ステートレス(セッション管理や状態管理を行わない)
+    - 同じURLに対する呼び出し結果は常に同じことが期待される
+    - リソースのHTTPメソッド(GET, POST等)によって指定
+    - 結果はHTML, XML, JSON等で返される
+    - 処理結果はHTTPステータスコードで通知する
 
 これを元にルーティング(エンドポイント)を作成していく
 どのようなエンドポイントがほしいかを考える（Twitterを触ってみる）
@@ -113,15 +113,15 @@ HTTPメソッド
 
 
 ## キーワード
-    - Ruby
-    - Ruby on Rails
-    - APIサーバ
-    - REST, RESTful
-    - JSON
-    - HTTPメソッド
-    - SQL
-    - RDBMS
-    - MVC
+- Ruby
+- Ruby on Rails
+- APIサーバ
+- REST, RESTful
+- JSON
+- HTTPメソッド
+- SQL
+- RDBMS
+- MVC
 
 
 
