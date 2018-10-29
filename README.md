@@ -3,10 +3,12 @@
 - 2018/11/30
 - 2018/11/31
 
-## 前提
-- Ruby 2.4をインストールしている
-- ruby gemの bundler をインストールしている
-- 何かしらのエディタ(vim, atom, vscode等)がインストールされている
+## 準備
+- PostManをインストール(https://www.getpostman.com/)
+- Ruby 2.4をインストール(Macでrbenvの人は`rbenv install 2.4.1`, windowsの人は[RubyInstaller for Windows](https://rubyinstaller.org/downloads/)をから)
+- Ruby 2.4をインストール(Macでrbenvの人は`rbenv install 2.4.1`, windowsno)
+- ruby gemの bundler をインストール
+- 何かしらのエディタ(vim, atom, vscode等)がインストール
 ## 資料
 今回作成するのは劣化版Twitter   
 ユーザがいてツイートのみできるというものを作る   
