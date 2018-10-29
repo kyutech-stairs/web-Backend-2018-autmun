@@ -5,10 +5,17 @@ class TweetsController < ApplicationController
   end
 
   def show
-
+    tweet = Tweet.find(params[:id])
+    render json: {status: 200, data: tweet}
   end
 
   def create
+    tweet = Tweet.new(tweet_params)
+    if tweet.save then
+      render json: {status: 201, data: tweet}
+    else
+      render json: {status: 500, message: "Internal Server Error"}
+    end
   end
 
   def destroy
@@ -23,6 +30,6 @@ class TweetsController < ApplicationController
 
   private 
   def tweet_params
-    params.require(:tweets).permit(:tweets, :user_id)
+    params.require(:tweet).permit(:text, :user_id)
   end
 end
